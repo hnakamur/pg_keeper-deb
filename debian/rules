@@ -1,8 +1,10 @@
 #!/usr/bin/make -f
+
+include /usr/share/postgresql-common/pgxs_debian_control.mk
+
 # See debhelper(7) (uncomment to enable)
 # output every command that modifies files on the build system.
 #export DH_VERBOSE = 1
-
 
 # see FEATURE AREAS in dpkg-buildflags(1)
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
@@ -18,5 +20,19 @@ export USE_PGXS=1
 %:
 	dh $@
 
+override_dh_auto_build:
+	:
+
 override_dh_auto_test:
 	:
+
+override_dh_auto_install:
+	dh_auto_install
+	set -e ; \
+	for v in `pg_buildext supported-versions .` ; do \
+		echo "# $$v ##################################################################" ; \
+		PG_CONFIG=/usr/lib/postgresql/$$v/bin/pg_config ; \
+		$(MAKE) clean PG_CONFIG=$$PG_CONFIG ; \
+		$(MAKE) PG_CONFIG=$$PG_CONFIG ; \
+		$(MAKE) install DESTDIR=$(CURDIR)/debian/postgresql-$$v-pgkeeper PG_CONFIG=$$PG_CONFIG ; \
+	done
