@@ -5,34 +5,10 @@ Build-Depends: debhelper (>= 10),
  libpq-dev,
  libssl-dev,
  libkrb5-dev,
- postgresql-server-dev-all (>= 148~)
+ postgresql-server-dev-11
 Standards-Version: 4.1.2
 Section: libs
 Homepage: https://github.com/MasahikoSawada/pg_keeper
-
-Package: postgresql-9.5-pgkeeper
-Architecture: any
-Section: libs
-Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: Simplified clustering module for PostgreSQL
- pg_keeper is a simplified clustering module for PostgreSQL, to
- promote a standby server to master in a 2 servers cluster.
-
-Package: postgresql-9.6-pgkeeper
-Architecture: any
-Section: libs
-Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: Simplified clustering module for PostgreSQL
- pg_keeper is a simplified clustering module for PostgreSQL, to
- promote a standby server to master in a 2 servers cluster.
-
-Package: postgresql-10-pgkeeper
-Architecture: any
-Section: libs
-Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: Simplified clustering module for PostgreSQL
- pg_keeper is a simplified clustering module for PostgreSQL, to
- promote a standby server to master in a 2 servers cluster.
 
 Package: postgresql-11-pgkeeper
 Architecture: any
